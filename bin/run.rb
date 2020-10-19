@@ -1,5 +1,10 @@
+# require 'pry'
 require_relative '../config/environment'
 
+cli = CLI.new
+ 
+cli.welcome
 
+puts "End of Program"
 
-puts "HELLO WORLD"
+# binding.pry

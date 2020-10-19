@@ -1,5 +1,7 @@
 require "tty-prompt"
-# require "pry"
+require "pry"
+
+
 
 class CLI
     @@prompt = TTY::Prompt.new
@@ -40,4 +42,4 @@ class CLI
 #binding.pry
 
 
-end#end
+end #end of class
