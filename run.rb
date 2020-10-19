@@ -3,9 +3,10 @@ require_relative './config/environment'
 require "tty-prompt"
 prompt = TTY::Prompt.new
 
+system("clear")
+IntroMessage.run
+puts "\n\n\nA RPG game based on the life of a Flatiron Student!  Remember to read the README!\n\n"
+sleep 2
 
-cli = CLI.new
-
-cli.welcome
-
-binding.pry
+CLI.main_menu
+# binding.pry

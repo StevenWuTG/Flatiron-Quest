@@ -5,8 +5,8 @@ Monster.destroy_all
 Support.destroy_all
 
 #user data
-mary = User.create(user_name: "Mary", user_password: "Apples")
-steven = User.create(user_name: "Steven", user_password: "Oranges")
+# mary = User.create(user_name: "Mary", user_password: "Apples")
+# steven = User.create(user_name: "Steven", user_password: "Oranges")
 
 #quest data
 codechallenge = Quest.create(quest_name: "Code Challenge", quest_level: 7)
@@ -22,7 +22,7 @@ rewatch = Support.create(support_name: "Rewatched lecture")
 rest = Support.create(support_name: "Slept 8 hours")
 
 #battle data
-battle1 = Battle.create(battle_name: "Mary vs. Code Challenge", user_id: mary.id, quest_id: codechallenge.id, monster_id: intro_oo.id, support_id: rewatch.id)
+# battle1 = Battle.create(battle_name: "Mary vs. Code Challenge", user_id: mary.id, quest_id: codechallenge.id, monster_id: intro_oo.id, support_id: rewatch.id)
 
 
 
