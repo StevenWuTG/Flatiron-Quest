@@ -6,16 +6,15 @@ class Monster < ActiveRecord::Base
         
     end
 
-    # def stats_check
-    #     puts "User Name: #{self.user_name}"
-    #     puts "Health: #{self.user_health}"
-    #     puts "Attack: #{self.user_attack}"
-    #     puts "Student Level: #{self.user_level}"
+    def stats_check
+        puts "Monster Name: #{self.mon_name}"
+        puts "Health: #{self.mon_health}"
+        puts "Attack: #{self.mon_attack}"
        
-    #     sleep 3
-    #     system('clear')
-    #     CLI.user_menu
-    # end
+        # sleep 3
+        # system('clear')
+        # CLI.user_menu
+    end
 
     
 end

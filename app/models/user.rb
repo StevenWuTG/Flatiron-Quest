@@ -42,10 +42,11 @@ class User < ActiveRecord::Base
         puts "Health: #{self.user_health}"
         puts "Attack: #{self.user_attack}"
         puts "Student Level: #{self.user_level}"
-       
-        sleep 3
-        system('clear')
-        CLI.user_menu
-    end
+       # sleep 3
+        # system('clear')
+        # CLI.user_menu
 
+        
+    end
+    
 end

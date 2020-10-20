@@ -51,21 +51,21 @@ rest = Support.create(support_name: "Slept 8 hours", support_health: 5, support_
 
 participation = Support.create(support_name: "Paid attention and participated in lecture", support_health: 3, support_attack:4)
 
-office_hours = Support.create(support_name: "Went to office hours", support_health:0, support_attack:3)
+# office_hours = Support.create(support_name: "Went to office hours", support_health:0, support_attack:3)
 
 sing = Support.create(support_name: "Sang and danced with Caryn before lecture", support_health:2, support_attack:0)
 
-cats = Support.create(support_name: "Laughed at Caryn's cats", support_health:2, support_attack:0)
+cats = Support.create(support_name: "Laughed at Caryn's cats during lecture", support_health:2, support_attack:0)
 
 yoga = Support.create(support_name: "Practiced chair yoga", support_health:3, support_attack:0)
 
-fun = Support.create(support_name: "Mandatory fun", support_health:2, support_attack:0)
+# fun = Support.create(support_name: "Mandatory fun", support_health:2, support_attack:0)
 
 solutions = Support.create(support_name: "Copied solutions code", support_health:1, support_attack:4)
 
-slack = Support.create(support_name: "Asked for help on Slack", support_health:1, support_attack:4)
+slack = Support.create(support_name: "Asked for help on Slack and studied with a cohort-mate", support_health:1, support_attack:4)
 
-friend = Support.create(support_name: "Studied with a cohort-mate", support_health:1, support_attack:4)
+# friend = Support.create(support_name: "Studied with a cohort-mate", support_health:1, support_attack:4)
 
 stack_over = Support.create(support_name: "Duck, duck, go-ed and found answers on Stack-Overflow", support_health:1, support_attack:3)
 
