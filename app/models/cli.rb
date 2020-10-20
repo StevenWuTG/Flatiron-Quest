@@ -4,6 +4,7 @@ require "pry"
 
 
 class CLI
+    @@artii = Artii::Base.new :font => 'slant'
 
  #################### Main MENU ##########################
     # @@monster = Monster.first
@@ -29,7 +30,9 @@ class CLI
     end#done
 
     def self.sign_up#done
+        
         prompt = TTY::Prompt.new
+        puts @@artii.asciify("Sign Up Page")
         username = prompt.ask("Create a Username:")
         password = prompt.mask("Create a Password:")
         user = User.create(user_name: username, user_password: password)
@@ -42,6 +45,8 @@ class CLI
     end
 
     def self.log_in
+        puts @@artii.asciify("Login Portal")
+        puts " "
         prompt = TTY::Prompt.new
         username = prompt.ask("Please Enter Your Username:")
         password = prompt.mask("Please Enter Your Password:")
@@ -77,6 +82,8 @@ class CLI
 ########################## USER MENUs ########################
 
     def self.user_menu
+        puts @@artii.asciify("User Menu")
+        puts " "
         prompt = TTY::Prompt.new
         puts "Welcome to 9AM Lecture, #{@session_user.user_name}!  Good luck on your labs today!"
         puts " "
