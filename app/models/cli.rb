@@ -6,6 +6,11 @@ require "pry"
 class CLI
 
  #################### Main MENU ##########################
+    # @@monster = Monster.first
+
+    # # def self.monster
+    #     @@monster
+    # end
 
     def self.main_menu#done
         sleep(1.5)
@@ -81,7 +86,7 @@ class CLI
             menu.choice "Log Out"
         end
         if choice == "Battle Current Lab"
-            @session_user.battle_menu
+            CLI.battle_menu
             
         elsif choice == "View Stats"
             @session_user.stats_check
@@ -91,33 +96,23 @@ class CLI
         end
     end
 
-    def self.current_monster
-        @session_monster = Monster.all.first
-        Monster.shift
-    end
-
-    
-        # choice 1 = fight lab
-        #     monster.health -= user.attack
-        #     10 -2 = 8
-        #     user.health -= monster.attack
-
-        # choice 2 = slack off
-        #     user.health + 2
-        #     user.health -= monster.attack
-        # choice 3 = curl up, give up, cry, and drop out
-        #     user.delete
-            
-    #         CLI.post_battle
-
+    # def current_monster
+    #     @session_monster = Monster.all.first
+    #     Monster.shift
     # end
 
+    
+        
  ####################### Battle Menus ########################
 
     def self.battle_menu
+        
         prompt = TTY::Prompt.new
-        monster = @session_monster
-        Puts "Todays monster is #{monster.mon_name}"
+        @monster = Monster.current_monster
+        # monster = @@monster
+        system ('clear')
+        puts "Todays monster is #{@monster.mon_name}"
+        puts " "
         choice = prompt.select('Choose an option') do |menu|
             menu.choice "Fight the monster to conquor the lab"
             menu.choice "Slack off"
@@ -127,49 +122,57 @@ class CLI
             sleep 2
             CLI.fight_seq
         elsif choice == "Slack off"
-            monster.mon_attack += 1
-            puts "the lab just got harder cuz you slacked off"
-            sleep 2
+           
+            @monster.mon_attack += 1
+            puts " "
+            puts "The lab just got harder cuz you slacked off!!!"
+            sleep 3
             CLI.battle_menu
         elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
-            puts "sorry you feel that way, coding isn't for everyone, better luck next time.."
-            sleep 2
-
+            system ('clear')
+            puts " "
+            puts "Sorry you feel that way, coding isn't for everyone, better luck next time..."
+            sleep 3
+            # 
+            system('clear')
             CLI.log_out
         end
     end
 
 
-    # def self.fight_seq
-    #     prompt = TTY::Prompt.new
-    #     user = @session_user 
-    #     monster = #user.current_monster
-    #     puts user.stats 
-    #     puts monster.stats
-    #     sleep 2
-    #     choice = prompt.select('Choose an option') do |menu|
-    #         menu.choice "Attack!!"
-    #         menu.choice "Snack"
-    #         menu.choice ""
-    #     end
-    #     if choice == "Attack!!"
-    #         monster.mon_health -= user.attack
-    #         if user.health <= 0
-    #             puts "The lab defeated you this time..."
-    #             sleep 3
-    #             CLI.main_menu
-    #         elsif monster.health <= 0
-    #             puts "Congrats, you conquered the lab."
-    #             CLI.post_battle
-    #         end
-    #     elsif choice == "Snack"
-    #         puts "Can't concentrate, grabbin a snack."
-    #         user.health += 1
-    #         CLI.fight_seq
+    def self.fight_seq
+        prompt = TTY::Prompt.new
+        user = @session_user 
+        # monster = #user.current_monster
+        # puts user.stats_check
+         
+        # puts monster.stats_check
+        # sleep 2
+        choice = prompt.select('Choose an option') do |menu|
+            menu.choice "Attack!!"
+            menu.choice "Snack"
+            menu.choice ""
+        end
+        if choice == "Attack!!"
+            monster.mon_health -= user.attack
+            if user.health <= 0
+                puts "The lab defeated you this time..."
+                sleep 3
+                CLI.main_menu
+            elsif monster.health <= 0
+                puts "Congrats, you defeated the monster and conquered the lab."
+                  @@monster = Monster.find(@@monster.id + 1)
+                CLI.post_battle
+            end
+        elsif choice == "Snack"
+            puts "Can't concentrate, grabbin a snack."
+            user.health += 1
+            CLI.fight_seq
 
-    #     elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
-    #         CLI.log_out
-    #     end
+        elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
+            CLI.log_out
+        end
+    end
         
 
     
