@@ -19,4 +19,15 @@ class User < ActiveRecord::Base
         self.find_by(user_name: username, user_password: password)
     end
 
+    def self.save_quit
+    end
+
+    def self.stats_check
+        puts "User Name: #{self.user_name}"
+        puts "Health: #{self.user_health}"
+        puts "Attack: #{self.user_attack}"
+        puts "Student Level: #{self.user_level}"
+    
+    end
+
 end
