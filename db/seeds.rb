@@ -55,7 +55,7 @@ participation = Support.create(support_name: "Paid attention and participated in
 
 sing = Support.create(support_name: "Sang and danced with Caryn before lecture", support_health:2, support_attack:0)
 
-cats = Support.create(support_name: "Laughed at Caryn's cats during lecture", support_health:2, support_attack:0)
+cats = Support.create(support_name: "Laughed at Caryn's cats during lecture", support_health:2, support_attack:4)
 
 yoga = Support.create(support_name: "Practiced chair yoga", support_health:3, support_attack:0)
 
@@ -71,7 +71,7 @@ stack_over = Support.create(support_name: "Duck, duck, go-ed and found answers o
 
 docs = Support.create(support_name: "Read Ruby docs!", support_health:5, support_attack:1)
 
-michelle = Support.create(support_name: "Michelle's accent made me smile", support_health:3, support_attack:0)
+michelle = Support.create(support_name: "Michelle's accent made me smile", support_health:3, support_attack:4)
 
 
 
