@@ -19,6 +19,7 @@ class CLI
         welcome = prompt.select("Enter your username and password or create an account.") do |menu|
             menu.choice "Log In"
             menu.choice "Sign Up"
+            menu.choice "Exit game"
         end
         if welcome == "Log In"
             system("clear")
@@ -26,6 +27,12 @@ class CLI
         elsif welcome == "Sign Up"
             system("clear")
             CLI.sign_up
+        elsif welcome == "Exit game"
+            puts "Hope you get back to studying soon"
+            sleep 2
+            system("clear")
+            exit!
+                
         end
     end#done
 
@@ -61,6 +68,7 @@ class CLI
             choice = prompt.select('Incorrect username and/or password!') do |menu|
             menu.choice "Retry Log In"
             menu.choice "Create Username and Password"
+            menu.choice "Exit Game"
             end
             if choice == "Retry Log In"
                 system("clear")
@@ -68,6 +76,11 @@ class CLI
             elsif choice == "Create Username and Password"
                 system("clear")
                 CLI.sign_up
+            elsif choice == "Exit Game"
+            puts "Hope you get back to studying soon"
+            sleep 2
+            system("clear")
+            exit!
             end
         end
     end
@@ -122,6 +135,8 @@ class CLI
         #binding.pry
         # monster = @@monster
         system ('clear')
+        puts @@artii.asciify("Class Time!!")
+        sleep 1.5
         puts "Todays monster is #{@monster.mon_name}"
         puts " "
         choice = prompt.select('Choose an option') do |menu|
@@ -137,7 +152,7 @@ class CLI
             @monster.mon_attack += 1
             puts " "
             puts "The lab just got harder cuz you slacked off!!!"
-            sleep 3
+            sleep 2
             CLI.battle_menu
         elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
             system ('clear')
@@ -172,6 +187,9 @@ class CLI
             @monster.mon_attack += 1
             puts " "
             puts "The lab just got harder cuz you slacked off!!!"
+            binding.pry
+            puts @monster.stats_check
+            puts " "
             sleep 3
             CLI.battle_menu2
         elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
