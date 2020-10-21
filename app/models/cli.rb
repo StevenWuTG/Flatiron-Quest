@@ -157,7 +157,9 @@ class CLI
             puts " "
             puts "Sorry you feel that way, coding isn't for everyone, better luck next time..."
             sleep 3
-            # 
+            binding.pry
+            @session_user.destroy
+            binding.pry
             system('clear')
             CLI.log_out
         end
@@ -191,6 +193,7 @@ class CLI
             system ('clear')
             puts " "
             puts "Sorry you feel that way, coding isn't for everyone, better luck next time..."
+            binding.pry
             sleep 3
             # 
             system('clear')
@@ -408,8 +411,10 @@ class CLI
         puts ' '
         puts 'GAME OVER but in a good way, you just passed your first mod!'
         puts " "
-        puts ' Hope you see you for the next one!\n\n\n '
+        puts ' Hope you see you for the next one!'
         sleep 2
+        puts " "
+        puts " "
         puts "Made by Mary & Steven"
         sleep 10
         # mod1.winners << @session_user
