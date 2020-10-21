@@ -10,6 +10,5 @@ class IntroMessage
      sleep 1
      puts @@artii.asciify("Flatiron Quest!!!")
      
-     
  end
 end

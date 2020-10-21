@@ -13,9 +13,6 @@ class Monster < ActiveRecord::Base
         puts "Health: #{self.mon_health}"
         puts "Attack: #{self.mon_attack}"
        
-        # sleep 3
-        # system('clear')
-        # CLI.user_menu
     end
 
     

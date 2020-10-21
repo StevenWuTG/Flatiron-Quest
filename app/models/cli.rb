@@ -255,9 +255,7 @@ class CLI
             sleep 3
             user.user_health += 2
             CLI.fight_seq
-
         end
-
     end
         
     def self.post_battle
