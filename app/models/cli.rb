@@ -122,7 +122,7 @@ class CLI
     end
 
 
-    {}
+    
         
  ####################### Battle Menus ########################
 
@@ -245,14 +245,22 @@ class CLI
                 puts "The lab defeated you this time..."
                 sleep 3
                 CLI.main_menu
+
             elsif monster.mon_health <= 0
-                @monster = Monster.find(@monster.id + 1)
+                if @monster.id == 2
+                    #binding.pry
+                    CLI.victory_menu
+                else
+                    @monster = Monster.find(@monster.id + 1)
+                end
+
                 system("clear")
                 sleep 2
                 puts "Congrats, you defeated the monster and conquered the lab."
                 sleep 3
                 CLI.post_battle
             end
+
         elsif choice == "Snack"
             system("clear")
             puts @@artii.asciify("Snack Time")
@@ -266,7 +274,7 @@ class CLI
     end
         
     def self.post_battle
-        binding.pry
+        #binding.pry
         prompt = TTY::Prompt.new
         support = Support.all
         system("clear")
@@ -275,7 +283,7 @@ class CLI
         user.user_level += 1
         system("clear")
         sleep 2
-        puts @@artii.asciify("Victory!!!")
+        puts @@artii.asciify("IT WORKED!!!")
         puts " "
         puts "Congratulations!  Thought you were finished? " 
         puts " "
@@ -364,5 +372,39 @@ class CLI
         CLI.battle_menu2
 
     end #self.post_battle
+
+    def self.victory_menu
+        #binding.pry
+        prompt = TTY::Prompt.new
+        puts @@artii.asciify("Congratulations!")
+        sleep 3
+        puts ' '
+        puts ' '
+        puts "Your hard work has paid off"
+        sleep 2
+        if @monster.id == 4
+            CLI.completed_mod
+        elsif @monster.id == 2
+            puts "You're halfway there."
+            @monster = Monster.find(@monster.id + 1)
+            CLI.battle_menu2
+        else
+            @monster = Monster.find(@monster.id + 1)
+            CLI.battle_menu2
+        end  
+
+    end #end of victory menu
+
+    def self.completed_mod #completed mod menu
+        puts @@artii.asciify("MOD COMPLETED!!")
+        puts ' '
+        puts ' '
+        puts 'GAME OVER but in a good way, you just passed your first mod!'
+        puts ' Hope you see you for the next one! '
+        @session_user = nil
+        ClI.main_menu
+
+
+    end
 
 end #end of class
