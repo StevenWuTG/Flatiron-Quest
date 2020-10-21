@@ -250,6 +250,8 @@ class CLI
                 if @monster.id == 2
                     #binding.pry
                     CLI.victory_menu
+                elsif @monster.id == 4
+                    CLI.victory_menu
                 else
                     @monster = Monster.find(@monster.id + 1)
                 end
@@ -283,7 +285,7 @@ class CLI
         user.user_level += 1
         system("clear")
         sleep 2
-        puts @@artii.asciify("IT WORKED!!!")
+        puts @@artii.asciify("Post Battle!!!")
         puts " "
         puts "Congratulations!  Thought you were finished? " 
         puts " "
@@ -375,7 +377,7 @@ class CLI
 
     def self.victory_menu
         #binding.pry
-        prompt = TTY::Prompt.new
+        # prompt = TTY::Prompt.new
         puts @@artii.asciify("Congratulations!")
         sleep 3
         puts ' '
@@ -383,13 +385,18 @@ class CLI
         puts "Your hard work has paid off"
         sleep 2
         if @monster.id == 4
+            #binding.pry
             CLI.completed_mod
         elsif @monster.id == 2
-            puts "You're halfway there."
+            #binding.pry
+            
+            puts @@artii.asciify("You're halfway there!")
+            sleep 3
             @monster = Monster.find(@monster.id + 1)
             CLI.battle_menu2
         else
             @monster = Monster.find(@monster.id + 1)
+            #binding.pry
             CLI.battle_menu2
         end  
 
@@ -400,9 +407,15 @@ class CLI
         puts ' '
         puts ' '
         puts 'GAME OVER but in a good way, you just passed your first mod!'
-        puts ' Hope you see you for the next one! '
-        @session_user = nil
-        ClI.main_menu
+        puts " "
+        puts ' Hope you see you for the next one!\n\n\n '
+        sleep 2
+        puts "Made by Mary & Steven"
+        sleep 10
+        # mod1.winners << @session_user
+        # @session_user.delete
+        CLI.log_out
+        exit!
 
 
     end

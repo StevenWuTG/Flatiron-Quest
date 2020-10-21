@@ -7,6 +7,7 @@ Support.destroy_all
 #user data
 # mary = User.create(user_name: "Mary", user_password: "Apples")
 # steven = User.create(user_name: "Steven", user_password: "Oranges")
+steven = User.create(user_name: "STEVEN", user_password: "steve", user_health: 1000, user_attack: 1000)
 
 #quest data
 codechallenge = Quest.create(quest_name: "Code Challenge")#id 1
