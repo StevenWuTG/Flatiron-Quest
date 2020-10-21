@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_170015) do
 
   create_table "supports", force: :cascade do |t|
     t.string "support_name"
+    t.string "support_message"
     t.integer "support_health"
     t.integer "support_attack"
   end

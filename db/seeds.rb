@@ -44,38 +44,37 @@ proj_4 = Monster.create(mon_name: "Project Week day 4",mon_health: 12,mon_attack
 
 proj_final = Monster.create(mon_name: "Project Presentation",mon_health: 3,mon_attack: 1)
 
+
+
 #support data
-rewatch = Support.create(support_name: "Rewatched today's lecture", support_health: 2, support_attack:5)
+
 
 rest = Support.create(support_name: "Slept 8 hours", support_health: 5, support_attack:1)
 
-participation = Support.create(support_name: "Paid attention and participated in lecture", support_health: 3, support_attack:4)
+caryn = Support.create(support_name: "caryn",support_message: "Laughed at Caryn's cats during lecture", support_health:2, support_attack:4)
 
+solutions = Support.create(support_name: "solutions",support_message: "Copied solutions code", support_health:1, support_attack:4)
+
+slack = Support.create(support_name: "slack",support_message: "Asked for help on Slack and studied with a cohort-mate", support_health:1, support_attack:4)
+
+stack_over = Support.create(support_name: "stack_over",support_message: "Duck, duck, go-ed and found answers on Stack-Overflow", support_health:1, support_attack:3)
+
+docs = Support.create(support_name: "docs",support_message: "Read Ruby docs!", support_health:5, support_attack:1)
+
+michelle = Support.create(support_name: "michelle",support_message: "Michelle's soothing voice made me smile", support_health:3, support_attack:4)
+
+# rewatch = Support.create(support_name: "Rewatched today's lecture", support_health: 2, support_attack:5)
+# participation = Support.create(support_name: "Paid attention and participated in lecture", support_health: 3, support_attack:4)
 # office_hours = Support.create(support_name: "Went to office hours", support_health:0, support_attack:3)
-
-sing = Support.create(support_name: "Sang and danced with Caryn before lecture", support_health:2, support_attack:0)
-
-cats = Support.create(support_name: "Laughed at Caryn's cats during lecture", support_health:2, support_attack:4)
-
-yoga = Support.create(support_name: "Practiced chair yoga", support_health:3, support_attack:0)
-
-# fun = Support.create(support_name: "Mandatory fun", support_health:2, support_attack:0)
-
-solutions = Support.create(support_name: "Copied solutions code", support_health:1, support_attack:4)
-
-slack = Support.create(support_name: "Asked for help on Slack and studied with a cohort-mate", support_health:1, support_attack:4)
-
+# sing = Support.create(support_name: "sing", support_message: "Sang and danced with Caryn before lecture", support_health:2, support_attack:0)
+# yoga = Support.create(support_message: "Practiced chair yoga", support_health:3, support_attack:0)
+# fun = Support.create(support_message: "Mandatory fun", support_health:2, support_attack:0)
 # friend = Support.create(support_name: "Studied with a cohort-mate", support_health:1, support_attack:4)
-
-stack_over = Support.create(support_name: "Duck, duck, go-ed and found answers on Stack-Overflow", support_health:1, support_attack:3)
-
-docs = Support.create(support_name: "Read Ruby docs!", support_health:5, support_attack:1)
-
-michelle = Support.create(support_name: "Michelle's accent made me smile", support_health:3, support_attack:4)
 
 
 
 #battle data
+
 # battle1 = Battle.create(battle_name: "Mary vs. Code Challenge", user_id: mary.id, quest_id: codechallenge.id, monster_id: intro_oo.id, support_id: rewatch.id)
 
 

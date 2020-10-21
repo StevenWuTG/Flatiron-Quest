@@ -12,6 +12,7 @@ class CLI
     # # def self.monster
     #     @@monster
     # end
+    
 
     def self.main_menu#done
         sleep(1.5)
@@ -44,6 +45,7 @@ class CLI
         password = prompt.mask("Create a Password:")
         user = User.create(user_name: username, user_password: password)
         system("clear")
+        puts @@artii.asciify("Passed Entrance Exam!")
         puts 'You have just enrolled in Flatiron bootcamp!  Congratulations!'
         sleep 3
         @session_user = User.all.find_by(user_name: username, user_password: password)
@@ -272,8 +274,9 @@ class CLI
 
     def self.post_battle
         prompt = TTY::Prompt.new
+        support = Support.all
         system("clear")
-        #binding.pry
+       
         user = @session_user
         user.user_level += 1
         # @monster = Monster.find(@monster.id + 1)
@@ -285,28 +288,66 @@ class CLI
         sleep 5
         system('clear')
         puts @@artii.asciify("After School")
-        # choice = prompt.select('Choose an option') do |menu|
-        #     menu.choice "Rewatch Caryn's Lecture"
-        #     menu.choice "Rewatch Michelle's Lecture"
-        #     menu.choice "Rest"
-        #     menu.choice "Ask for help on Slack"
-        #     menu.choice ""
-        #     menu.choice ""
-        # end
-        # if choice == "Rewatch Caryn's Lecture"
-        #     sleep 1
-        #     puts cats.support_name
-        #     user.user_health += cats.support_health
-        #     user.user_attack += cats.support_attack
-        # elsif choice == "Sign Up"
-        #     system("clear")
+        choice = prompt.select('Choose an option') do |menu|
+            menu.choice "Rewatch Caryn's Lecture"
+            menu.choice "Rewatch Michelle's Lecture"
+            menu.choice "Rest"
+            menu.choice "Ask for help on Slack"
+            menu.choice "Stack-Overflow"
+            menu.choice "Read the Readmes"
+        end
+        if choice == "Rewatch Caryn's Lecture"
             
-        # end
+            caryn = support.find_by support_name: "caryn"
+            sleep 1
+            puts caryn.support_message
+            user.user_health += caryn.support_health
+            user.user_attack += caryn.support_attack
+            sleep 2
+            binding.pry
+            CLI.battle_menu2
+        elsif choice == "Rewatch Michelle's Lecture"
+            sleep 1
+            puts caryn.support_name
+            user.user_health += michelle.support_health
+            user.user_attack += michelle.support_attack
+            sleep 2
+            CLI.battle_menu2
+        elsif choice == "Rest"
+            sleep 1
+            puts rest.support_name
+            user.user_health += rest.support_health
+            user.user_attack += rest.support_attack
+            sleep 2
+            CLI.battle_menu2
+        elsif choice == "Ask for help on Slack"
+            sleep 1
+            puts slack.support_name
+            user.user_health += slack.support_health
+            user.user_attack += slack.support_attack
+            sleep 2
+            CLI.battle_menu2
+        elsif choice == "Stack-Overflow"
+            sleep 1
+            puts stack_over.support_name
+            user.user_health += stack_over.support_health
+            user.user_attack += stack_over.support_attack
+            sleep 2
+            CLI.battle_menu2
+        elsif choice == "Read the Readmes"
+            sleep 1
+            puts docs.support_name
+            user.user_health += docs.support_health
+            user.user_attack += docs.support_attack
+            sleep 2
+            CLI.battle_menu2
+            
+            
+        end
+        system("clear")
+        CLI.battle_menu2
 
-
-        # system("clear")
-        # CLI.battle_menu2
-    end
+    end #self.post_battle
 
     #    @session_user.completed_labs << @session_monster
     #     puts "sweet 6pm is here , you survived today"

@@ -4,6 +4,7 @@ class CreateSupports < ActiveRecord::Migration[6.0]
       # attributes
       
       t.string :support_name
+      t.string :support_message
       t.integer :support_health
       t.integer :support_attack
      
