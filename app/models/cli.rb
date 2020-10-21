@@ -7,12 +7,7 @@ class CLI
     @@artii = Artii::Base.new :font => 'slant'
 
  #################### Main MENU ##########################
-    # @@monster = Monster.first
-
-    # # def self.monster
-    #     @@monster
-    # end
-    
+  
 
     def self.main_menu#done
         sleep(1.5)
@@ -45,7 +40,11 @@ class CLI
         password = prompt.mask("Create a Password:")
         user = User.create(user_name: username, user_password: password)
         system("clear")
-        puts @@artii.asciify("Passed Entrance Exam!")
+        puts @@artii.asciify("Congrats!!")
+        puts " "
+        sleep 1
+        puts "You passed the Entrance Exam!"
+        sleep 1
         puts 'You have just enrolled in Flatiron bootcamp!  Congratulations!'
         sleep 3
         @session_user = User.all.find_by(user_name: username, user_password: password)
@@ -60,12 +59,10 @@ class CLI
         username = prompt.ask("Please Enter Your Username:")
         password = prompt.mask("Please Enter Your Password:")
         if User.find_by user_name: username, user_password: password
-            #if username/ password match match
             @session_user = User.find_by user_name: username, user_password: password
             system("clear")
             CLI.user_menu
         else
-            #if username/ password don't match
             system("clear")
             choice = prompt.select('Incorrect username and/or password!') do |menu|
             menu.choice "Retry Log In"
@@ -91,12 +88,14 @@ class CLI
         @session_user = nil
         system("clear")
         CLI.main_menu
-        #db.seeds << self  SAVE USER STATS
+    
     end
 
 ########################## USER MENUs ########################
 
     def self.user_menu
+        @monster = Monster.first
+        system("clear")
         puts @@artii.asciify("User Menu")
         puts " "
         prompt = TTY::Prompt.new
@@ -126,49 +125,11 @@ class CLI
         
  ####################### Battle Menus ########################
 
-    def self.battle_menu
-        @quest = Quest.first
-        Battle.create(user_id: @session_user.id, quest_id: @quest.id)
-        
-        prompt = TTY::Prompt.new
-        @monster = Monster.first
-        system ('clear')
-        puts @@artii.asciify("Class Time!!")
-        sleep 1.5
-        puts "Todays monster is #{@monster.mon_name}"
-        puts " "
-        choice = prompt.select('Choose an option') do |menu|
-            menu.choice "Fight the monster to conquor the lab"
-            menu.choice "Slack off"
-            menu.choice "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
-        end
-        if choice == "Fight the monster to conquor the lab"
-            sleep 2
-            CLI.fight_seq
-        elsif choice == "Slack off"
-           
-            @monster.mon_attack += 1
-            puts " "
-            puts "The lab just got harder cuz you slacked off!!!"
-            sleep 2
-            CLI.battle_menu
-        elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
-            system ('clear')
-            puts " "
-            puts "Sorry you feel that way, coding isn't for everyone, better luck next time..."
-            sleep 3
-            binding.pry
-            @session_user.destroy
-            binding.pry
-            system('clear')
-            CLI.log_out
-        end
-    end
 
-    def self.battle_menu2
+    def self.battle_menu
         
         prompt = TTY::Prompt.new
-        # @monster = Monster.find(@monster.id + 1)
+        
         system ('clear')
         puts "The next monster is #{@monster.mon_name}"
         puts " "
@@ -185,15 +146,16 @@ class CLI
             @monster.mon_attack += 1
             puts " "
             puts "The lab just got harder cuz you slacked off!!!"
+            puts " "
+            puts "Monster's current stats:"
             puts @monster.stats_check
             puts " "
             sleep 3
-            CLI.battle_menu2
+            CLI.battle_menu
         elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
             system ('clear')
             puts " "
             puts "Sorry you feel that way, coding isn't for everyone, better luck next time..."
-            binding.pry
             sleep 3
             # 
             system('clear')
@@ -217,10 +179,11 @@ class CLI
         puts monster.stats_check
         sleep 3
         system('clear')
-        puts @@artii.asciify("Attack Menu")
+        puts @@artii.asciify("Fight Menu")
         choice = prompt.select('Choose an option') do |menu|
             menu.choice "Attack!!"
             menu.choice "Snack"
+            menu.choice "Take a break"
         end
         if choice == "Attack!!"
             system("clear")
@@ -237,6 +200,7 @@ class CLI
                 puts " "
                 sleep 2
                 puts "Monster health takes a hit of #{user.user_attack} points!"
+                puts " "
                 sleep 2
                 monster.mon_health -= user.user_attack
 
@@ -246,12 +210,14 @@ class CLI
             if user.user_health <= 0
                 sleep 2
                 puts "The lab defeated you this time..."
+                @session_user.update(user_health: 10)
+                puts " "
                 sleep 3
-                CLI.main_menu
+                CLI.battle_menu
 
             elsif monster.mon_health <= 0
                 if @monster.id == 2
-                    #binding.pry
+                    
                     CLI.victory_menu
                 elsif @monster.id == 4
                     CLI.victory_menu
@@ -272,14 +238,30 @@ class CLI
             puts " "
             puts " "
             puts "Can't concentrate, grabbin a snack. *munch* *munch* "
+            puts " "
             sleep 2
-            user.user_health += 1
+            # user.user_health += 1
             CLI.fight_seq
+        elsif choice == "Take a break"
+            system("clear")
+            puts @@artii.asciify("Break Time")
+            puts " "
+            puts " "
+            puts "I have no clue what I'm reading right now! "
+            puts " "
+            sleep 1
+            puts "Let me take a fiver real quick."
+            puts " "
+            sleep 3
+            user.user_health += 2
+            CLI.fight_seq
+
         end
+
     end
         
     def self.post_battle
-        #binding.pry
+       
         prompt = TTY::Prompt.new
         support = Support.all
         system("clear")
@@ -288,7 +270,7 @@ class CLI
         user.user_level += 1
         system("clear")
         sleep 2
-        puts @@artii.asciify("Post Battle!!!")
+        puts @@artii.asciify("Post Battle")
         puts " "
         puts "Congratulations!  Thought you were finished? " 
         puts " "
@@ -316,7 +298,7 @@ class CLI
             user.user_health += caryn.support_health
             user.user_attack += caryn.support_attack
             sleep 3
-            CLI.battle_menu2
+            CLI.battle_menu
         elsif choice == "Rewatch Michelle's Lecture"
             michelle = support.find_by support_name: "michelle"
             system("clear")
@@ -327,7 +309,7 @@ class CLI
             user.user_health += michelle.support_health
             user.user_attack += michelle.support_attack
             sleep 3
-            CLI.battle_menu2
+            CLI.battle_menu
         elsif choice == "Rest"
             rest = support.find_by support_name: "rest"
             system("clear")
@@ -338,7 +320,7 @@ class CLI
             user.user_health += rest.support_health
             user.user_attack += rest.support_attack
             sleep 3
-            CLI.battle_menu2
+            CLI.battle_menu
         elsif choice == "Ask for help on Slack"
             slack = support.find_by support_name: "slack"
             system("clear")
@@ -349,7 +331,7 @@ class CLI
             user.user_health += slack.support_health
             user.user_attack += slack.support_attack
             sleep 3
-            CLI.battle_menu2
+            CLI.battle_menu
         elsif choice == "Peek at solution tab"
             solutions = support.find_by support_name: "solutions"
             system("clear")
@@ -360,7 +342,7 @@ class CLI
             user.user_health += solutions.support_health
             user.user_attack += solutions.support_attack
             sleep 3
-            CLI.battle_menu2
+            CLI.battle_menu
         elsif choice == "Read the Readmes"
             docs = support.find_by support_name: "docs"
             system("clear")
@@ -371,36 +353,37 @@ class CLI
             user.user_health += docs.support_health
             user.user_attack += docs.support_attack
             sleep 3
-            CLI.battle_menu2   
+            CLI.battle_menu
         end
         system("clear")
-        CLI.battle_menu2
+        CLI.battle_menu
 
     end #self.post_battle
 
     def self.victory_menu
-        #binding.pry
-        # prompt = TTY::Prompt.new
-        puts @@artii.asciify("Congratulations!")
+        system("clear")
+        sleep 2
+        puts @@artii.asciify("Congrats!!!")
         sleep 3
         puts ' '
         puts ' '
         puts "Your hard work has paid off"
+        puts " "
         sleep 2
         if @monster.id == 4
-            #binding.pry
+            
             CLI.completed_mod
         elsif @monster.id == 2
-            #binding.pry
             
-            puts @@artii.asciify("You're halfway there!")
+            system("clear")
+            puts @@artii.asciify("Halfway There!")
             sleep 3
             @monster = Monster.find(@monster.id + 1)
-            CLI.battle_menu2
+            CLI.battle_menu
         else
             @monster = Monster.find(@monster.id + 1)
-            #binding.pry
-            CLI.battle_menu2
+           
+            CLI.battle_menu
         end  
 
     end #end of victory menu
@@ -415,10 +398,10 @@ class CLI
         sleep 2
         puts " "
         puts " "
+        puts "Based on real life experiences"
+        puts " "
         puts "Made by Mary & Steven"
         sleep 10
-        # mod1.winners << @session_user
-        # @session_user.delete
         CLI.log_out
         exit!
 

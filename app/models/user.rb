@@ -7,9 +7,6 @@ class User < ActiveRecord::Base
     has_many :monsters, through: :battles
     @@prompt = TTY::Prompt.new
 
-    @completed_labs = []
-
-
     def self.signup
         username = @@prompt.ask("Please create a username.")
         password = @@prompt.mask("Please create a password.")
@@ -42,11 +39,6 @@ class User < ActiveRecord::Base
         puts "Health: #{self.user_health}"
         puts "Attack: #{self.user_attack}"
         puts "Student Level: #{self.user_level}"
-       # sleep 3
-        # system('clear')
-        # CLI.user_menu
-
-        
     end
     
 end
