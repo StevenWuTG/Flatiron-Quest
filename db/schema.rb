@@ -13,22 +13,19 @@
 ActiveRecord::Schema.define(version: 2020_10_19_170015) do
 
   create_table "battles", force: :cascade do |t|
-    t.string "battle_name"
     t.integer "user_id"
     t.integer "quest_id"
-    t.integer "monster_id"
-    t.integer "support_id"
   end
 
   create_table "monsters", force: :cascade do |t|
     t.string "mon_name"
     t.integer "mon_health"
     t.integer "mon_attack"
+    t.integer "quest_id"
   end
 
   create_table "quests", force: :cascade do |t|
     t.string "quest_name"
-    t.integer "quest_level"
   end
 
   create_table "supports", force: :cascade do |t|

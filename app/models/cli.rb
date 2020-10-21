@@ -122,11 +122,13 @@ class CLI
     end
 
 
-    
+    {}
         
  ####################### Battle Menus ########################
 
     def self.battle_menu
+        @quest = Quest.first
+        Battle.create(user_id: @session_user.id, quest_id: @quest.id)
         
         prompt = TTY::Prompt.new
         @monster = Monster.first
@@ -264,6 +266,7 @@ class CLI
     end
         
     def self.post_battle
+        binding.pry
         prompt = TTY::Prompt.new
         support = Support.all
         system("clear")

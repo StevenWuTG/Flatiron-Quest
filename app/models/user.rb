@@ -2,9 +2,9 @@ require "tty-prompt"
 
 class User < ActiveRecord::Base
     has_many :battles
+    has_many :supports
     has_many :quests, through: :battles
     has_many :monsters, through: :battles
-    has_many :supports, through: :battles
     @@prompt = TTY::Prompt.new
 
     @completed_labs = []

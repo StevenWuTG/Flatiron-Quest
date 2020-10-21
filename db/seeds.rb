@@ -9,40 +9,40 @@ Support.destroy_all
 # steven = User.create(user_name: "Steven", user_password: "Oranges")
 
 #quest data
-# codechallenge = Quest.create(quest_name: "Code Challenge", quest_level: 7)
+codechallenge = Quest.create(quest_name: "Code Challenge")#id 1
 # project = Quest.create(quest_name: "Mod 1 Project", quest_level: 10)
-modcomplete = Quest.create(quest_name: "Mod 1 Complete!", quest_level: 1)
+mod1project = Quest.create(quest_name: "Mod 1 Project")#id 2
 
 #monster data
-envsetup = Monster.create(mon_name: "Environment Set-up",mon_health: 3,mon_attack: 1)
+envsetup = Monster.create(mon_name: "Environment Set-up",mon_health: 3,mon_attack: 1, quest_id: 1)
 
-intro_oo = Monster.create(mon_name: "Intro to Object Orientation",mon_health: 4,mon_attack: 2)
+intro_oo = Monster.create(mon_name: "Intro to Object Orientation",mon_health: 4,mon_attack: 2,quest_id: 1)
 
-more_oo = Monster.create(mon_name: "More Object Orientation!!",mon_health: 5,mon_attack: 1)
+more_oo = Monster.create(mon_name: "More Object Orientation!!",mon_health: 5,mon_attack: 1,quest_id: 1)
 
-ass_lab = Monster.create(mon_name: "Associations One-to-many",mon_health: 5,mon_attack: 2)
+ass_lab = Monster.create(mon_name: "Associations One-to-many",mon_health: 5,mon_attack: 2,quest_id: 1)
 
-ass_more = Monster.create(mon_name: "More Associations Many-to-Many",mon_health: 6,mon_attack: 1)
+ass_more = Monster.create(mon_name: "More Associations Many-to-Many",mon_health: 6,mon_attack: 1,quest_id: 1)
 
-cc_practice = Monster.create(mon_name: "Mock Code Challenge",mon_health: 6,mon_attack: 2)
+cc_practice = Monster.create(mon_name: "Mock Code Challenge",mon_health: 6,mon_attack: 2, quest_id: 1)
 
-cc_mod1 = Monster.create(mon_name: "Mod1 Code Challenge",mon_health: 10,mon_attack: 3)
+cc_mod1 = Monster.create(mon_name: "Mod1 Code Challenge",mon_health: 10,mon_attack: 3, quest_id: 1)
 
-blog_talk = Monster.create(mon_name: "Blog Talk",mon_health: 4,mon_attack: 1)
+blog_talk = Monster.create(mon_name: "Blog Talk",mon_health: 4,mon_attack: 1, quest_id: 2)
 
-ar_intro = Monster.create(mon_name: "ActiveRecord::Base Intro",mon_health: 6,mon_attack: 2)
+ar_intro = Monster.create(mon_name: "ActiveRecord::Base Intro",mon_health: 6,mon_attack: 2, quest_id: 2)
 
-ar_ass = Monster.create(mon_name: "ActiveRecord Associations",mon_health: 6,mon_attack: 2)
+ar_ass = Monster.create(mon_name: "ActiveRecord Associations",mon_health: 6,mon_attack: 2, quest_id: 2)
 
-proj_intro = Monster.create(mon_name: "Project Week day 1",mon_health: 8,mon_attack: 2)
+proj_intro = Monster.create(mon_name: "Project Week day 1",mon_health: 8,mon_attack: 2, quest_id: 2)
 
-proj_2 = Monster.create(mon_name: "Project Week day 2",mon_health: 6,mon_attack: 5 )
+proj_2 = Monster.create(mon_name: "Project Week day 2",mon_health: 6,mon_attack: 5, quest_id: 2 )
 
-proj_3 = Monster.create(mon_name: "Project Week day 3",mon_health: 7,mon_attack: 4)
+proj_3 = Monster.create(mon_name: "Project Week day 3",mon_health: 7,mon_attack: 4, quest_id: 2)
 
-proj_4 = Monster.create(mon_name: "Project Week day 4",mon_health: 12,mon_attack: 4)
+proj_4 = Monster.create(mon_name: "Project Week day 4",mon_health: 12,mon_attack: 4, quest_id: 2)
 
-proj_final = Monster.create(mon_name: "Project Presentation",mon_health: 3,mon_attack: 1)
+proj_final = Monster.create(mon_name: "Project Presentation",mon_health: 3,mon_attack: 1, quest_id: 2)
 
 
 

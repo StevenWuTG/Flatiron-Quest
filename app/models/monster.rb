@@ -1,5 +1,7 @@
 class Monster < ActiveRecord::Base
-    belongs_to :battle
+    has_many :battles
+    has_many :users, through: :battles
+    has_many :quests, through: :battles
     
     def self.current_monster
         @session_monster = Monster.all.first

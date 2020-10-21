@@ -4,7 +4,7 @@ class CreateQuests < ActiveRecord::Migration[6.0]
       # attributes
       
       t.string :quest_name
-      t.integer :quest_level
+      # t.integer :quest_level
     
     end
   end

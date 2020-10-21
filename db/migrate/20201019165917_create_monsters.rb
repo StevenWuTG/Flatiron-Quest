@@ -6,8 +6,10 @@ class CreateMonsters < ActiveRecord::Migration[6.0]
       t.string :mon_name
       t.integer :mon_health
       t.integer :mon_attack
+      t.integer :quest_id
       # t.integer :mon_level
       # t.integer :battle_id
+
     end
   end
 end
