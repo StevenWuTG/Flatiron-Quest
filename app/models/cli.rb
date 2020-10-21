@@ -121,10 +121,6 @@ class CLI
         end
     end
 
-    # def current_monster
-    #     @session_monster = Monster.all.first
-    #     Monster.shift
-    # end
 
     
         
@@ -134,8 +130,6 @@ class CLI
         
         prompt = TTY::Prompt.new
         @monster = Monster.first
-        #binding.pry
-        # monster = @@monster
         system ('clear')
         puts @@artii.asciify("Class Time!!")
         sleep 1.5
@@ -170,9 +164,7 @@ class CLI
     def self.battle_menu2
         
         prompt = TTY::Prompt.new
-        @monster = Monster.find(@monster.id + 1)
-        #binding.pry
-        # monster = @@monster
+        # @monster = Monster.find(@monster.id + 1)
         system ('clear')
         puts "The next monster is #{@monster.mon_name}"
         puts " "
@@ -189,7 +181,6 @@ class CLI
             @monster.mon_attack += 1
             puts " "
             puts "The lab just got harder cuz you slacked off!!!"
-            binding.pry
             puts @monster.stats_check
             puts " "
             sleep 3
@@ -205,9 +196,6 @@ class CLI
         end
     end
     
-    
-
-
 
 
     def self.fight_seq
@@ -222,21 +210,28 @@ class CLI
         puts " " 
         sleep 2
         puts monster.stats_check
-        sleep 2
-        # binding.pry
+        sleep 3
+        system('clear')
+        puts @@artii.asciify("Attack Menu")
         choice = prompt.select('Choose an option') do |menu|
             menu.choice "Attack!!"
             menu.choice "Snack"
-            menu.choice ""
         end
         if choice == "Attack!!"
-
+            system("clear")
+            puts @@artii.asciify("Attack!!")
             loop do     
                 puts "This monster is attacking you at full strength!"
                 puts " "
-                user.user_health -= monster.mon_attack
                 sleep 2
-                puts "Monster health takes a hit of #{user.user_attack} points"
+                user.user_health -= monster.mon_attack
+                puts "Your health takes a hit of #{monster.mon_attack} points!"
+                puts " "
+                sleep 2
+                puts "You fight back!"
+                puts " "
+                sleep 2
+                puts "Monster health takes a hit of #{user.user_attack} points!"
                 sleep 2
                 monster.mon_health -= user.user_attack
 
@@ -249,29 +244,25 @@ class CLI
                 sleep 3
                 CLI.main_menu
             elsif monster.mon_health <= 0
+                @monster = Monster.find(@monster.id + 1)
+                system("clear")
                 sleep 2
                 puts "Congrats, you defeated the monster and conquered the lab."
-                #binding.pry
-
-                # @monster = Monster.find(@monster.id + 1)
+                sleep 3
                 CLI.post_battle
             end
         elsif choice == "Snack"
-            puts "Can't concentrate, grabbin a snack."
+            system("clear")
+            puts @@artii.asciify("Snack Time")
+            puts " "
+            puts " "
+            puts "Can't concentrate, grabbin a snack. *munch* *munch* "
             sleep 2
             user.user_health += 1
             CLI.fight_seq
-        
-
-        elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
-            CLI.log_out
-        
         end
     end
         
-
-    
-
     def self.post_battle
         prompt = TTY::Prompt.new
         support = Support.all
@@ -279,12 +270,15 @@ class CLI
        
         user = @session_user
         user.user_level += 1
-        # @monster = Monster.find(@monster.id + 1)
-
         system("clear")
         sleep 2
         puts @@artii.asciify("Victory!!!")
-        puts "Congratulations!  Thought you were finished?  Now you only have 15 hours of homework and studying left to do!  See you in 8 hours for 9 am discussion question!"
+        puts " "
+        puts "Congratulations!  Thought you were finished? " 
+        puts " "
+        puts "Now you only have 15 hours of homework and studying left to do! "
+        puts " "
+        puts "See you in 8 hours for 9 am discussion question!"
         sleep 5
         system('clear')
         puts @@artii.asciify("After School")
@@ -293,88 +287,79 @@ class CLI
             menu.choice "Rewatch Michelle's Lecture"
             menu.choice "Rest"
             menu.choice "Ask for help on Slack"
-            menu.choice "Stack-Overflow"
+            menu.choice "Peek at solution tab"
             menu.choice "Read the Readmes"
         end
         if choice == "Rewatch Caryn's Lecture"
-            
             caryn = support.find_by support_name: "caryn"
+            system("clear")
             sleep 1
+            puts @@artii.asciify("Meowwww")
+            puts " "
             puts caryn.support_message
             user.user_health += caryn.support_health
             user.user_attack += caryn.support_attack
-            sleep 2
-            binding.pry
+            sleep 3
             CLI.battle_menu2
         elsif choice == "Rewatch Michelle's Lecture"
+            michelle = support.find_by support_name: "michelle"
+            system("clear")
             sleep 1
-            puts caryn.support_name
+            puts @@artii.asciify("*smile*")
+            puts " "
+            puts michelle.support_message
             user.user_health += michelle.support_health
             user.user_attack += michelle.support_attack
-            sleep 2
+            sleep 3
             CLI.battle_menu2
         elsif choice == "Rest"
+            rest = support.find_by support_name: "rest"
+            system("clear")
             sleep 1
-            puts rest.support_name
+            puts @@artii.asciify("Z z Z z Z z Z z...")
+            puts " "
+            puts rest.support_message
             user.user_health += rest.support_health
             user.user_attack += rest.support_attack
-            sleep 2
+            sleep 3
             CLI.battle_menu2
         elsif choice == "Ask for help on Slack"
+            slack = support.find_by support_name: "slack"
+            system("clear")
             sleep 1
-            puts slack.support_name
+            puts @@artii.asciify("Can anyone help me?!?!")
+            puts " "
+            puts slack.support_message
             user.user_health += slack.support_health
             user.user_attack += slack.support_attack
-            sleep 2
+            sleep 3
             CLI.battle_menu2
-        elsif choice == "Stack-Overflow"
+        elsif choice == "Peek at solution tab"
+            solutions = support.find_by support_name: "solutions"
+            system("clear")
             sleep 1
-            puts stack_over.support_name
-            user.user_health += stack_over.support_health
-            user.user_attack += stack_over.support_attack
-            sleep 2
+            puts @@artii.asciify("Gotta love Github!")
+            puts " "
+            puts solutions.support_message
+            user.user_health += solutions.support_health
+            user.user_attack += solutions.support_attack
+            sleep 3
             CLI.battle_menu2
         elsif choice == "Read the Readmes"
+            docs = support.find_by support_name: "docs"
+            system("clear")
             sleep 1
-            puts docs.support_name
+            puts @@artii.asciify("Read the README!!!")
+            puts " "
+            puts docs.support_message
             user.user_health += docs.support_health
             user.user_attack += docs.support_attack
-            sleep 2
-            CLI.battle_menu2
-            
-            
+            sleep 3
+            CLI.battle_menu2   
         end
         system("clear")
         CLI.battle_menu2
 
     end #self.post_battle
-
-    #    @session_user.completed_labs << @session_monster
-    #     puts "sweet 6pm is here , you survived today"
-    #     choice 1 = do homework
-    #         user.health -= 1
-    #         user.attack += 2
-
-    #     choice 2 = eat dinner
-    #         user.health += 5
-
-    #     choice 3 = slack
-
-    #     choice 4 rewatch Lecture
-    #         puts "rewatching the caryns lecture really helped"
-    #         user.health 
-    #         user.attack += caryn.health_bous
-
-    #     artii "victory"
-        
-    #     pick up to 3 rewards
-    #     self.quest_level += 1
-    #     self.battle_level += 1
-    #     self.level += 1
-
-    #     Cli.user_menu
-
-    
-
 
 end #end of class

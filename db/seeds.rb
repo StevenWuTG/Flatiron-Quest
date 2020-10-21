@@ -48,20 +48,22 @@ proj_final = Monster.create(mon_name: "Project Presentation",mon_health: 3,mon_a
 
 #support data
 
-
-rest = Support.create(support_name: "Slept 8 hours", support_health: 5, support_attack:1)
-
 caryn = Support.create(support_name: "caryn",support_message: "Laughed at Caryn's cats during lecture", support_health:2, support_attack:4)
 
-solutions = Support.create(support_name: "solutions",support_message: "Copied solutions code", support_health:1, support_attack:4)
+michelle = Support.create(support_name: "michelle",support_message: "Michelle's soothing voice made me smile", support_health:3, support_attack:4)
+
+rest = Support.create(support_name: "rest", support_message: "Slept like rock...", support_health: 5, support_attack:1)
 
 slack = Support.create(support_name: "slack",support_message: "Asked for help on Slack and studied with a cohort-mate", support_health:1, support_attack:4)
 
 stack_over = Support.create(support_name: "stack_over",support_message: "Duck, duck, go-ed and found answers on Stack-Overflow", support_health:1, support_attack:3)
 
-docs = Support.create(support_name: "docs",support_message: "Read Ruby docs!", support_health:5, support_attack:1)
+docs = Support.create(support_name: "docs",support_message: "Read Ruby docs! Who knew they would actually help!", support_health:5, support_attack:1)
 
-michelle = Support.create(support_name: "michelle",support_message: "Michelle's soothing voice made me smile", support_health:3, support_attack:4)
+solutions = Support.create(support_name: "solutions",support_message: "Copied solutions code... shhhhh...", support_health:1, support_attack:4)
+
+
+
 
 # rewatch = Support.create(support_name: "Rewatched today's lecture", support_health: 2, support_attack:5)
 # participation = Support.create(support_name: "Paid attention and participated in lecture", support_health: 3, support_attack:4)
