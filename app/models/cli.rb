@@ -1,5 +1,6 @@
 require "tty-prompt"
 require "pry"
+require "colorize"
 
 
 
@@ -12,18 +13,18 @@ class CLI
     def self.main_menu#done
         sleep(1.5)
         prompt = TTY::Prompt.new
-        welcome = prompt.select("Enter your username and password or create an account.") do |menu|
-            menu.choice "Log In"
-            menu.choice "Sign Up"
-            menu.choice "Exit game"
+        choice = prompt.select("Enter your username and password or create an account.") do |menu|
+            menu.choice "Log In"#.light_blue
+            menu.choice "Sign Up"#.light_blue
+            menu.choice "Exit game"#.red
         end
-        if welcome == "Log In"
+        if choice == "Log In"
             system("clear")
             CLI.log_in
-        elsif welcome == "Sign Up"
+        elsif choice == "Sign Up"
             system("clear")
             CLI.sign_up
-        elsif welcome == "Exit game"
+        elsif choice == "Exit game"
             puts "Hope you get back to studying soon"
             sleep 2
             system("clear")
@@ -76,10 +77,14 @@ class CLI
                 system("clear")
                 CLI.sign_up
             elsif choice == "Exit Game"
-            puts "Hope you get back to studying soon"
-            sleep 2
-            system("clear")
-            exit!
+                system("clear")
+                puts @@artii.asciify("Boooo ! ! !")
+                puts " "
+                puts " "
+                puts "Hope you get back to studying soon"
+                sleep 2
+                system("clear")
+                exit!
             end
         end
     end
@@ -127,6 +132,11 @@ class CLI
 
 
     def self.battle_menu
+
+        Battle.create( user_id: @session_user.id, monster_id:@monster.id )
+        #binding.pry
+        @session_user.update(current_quest: @monster.quest.quest_name) 
+
         
         prompt = TTY::Prompt.new
         
@@ -359,8 +369,12 @@ class CLI
     end #self.post_battle
 
     def self.victory_menu
+        # @session_user.update(current_quest: @monster.quest.quest_name) 
+        system("clear")
+        binding.pry
         system("clear")
         sleep 2
+        # binding.pry
         puts @@artii.asciify("Congrats!!!")
         sleep 3
         puts ' '

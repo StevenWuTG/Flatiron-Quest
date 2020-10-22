@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :user_health, default:10
       t.integer :user_attack, default: 5
       t.integer :user_level, default:1
+      t.string :current_quest
     end
   end
 end

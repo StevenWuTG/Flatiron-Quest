@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2020_10_19_170015) do
 
   create_table "battles", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "quest_id"
     t.integer "monster_id"
   end
 
@@ -22,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_170015) do
     t.string "mon_name"
     t.integer "mon_health"
     t.integer "mon_attack"
-    t.integer "battle_id"
+    t.integer "quest_id"
   end
 
   create_table "quests", force: :cascade do |t|
@@ -42,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_170015) do
     t.integer "user_health", default: 10
     t.integer "user_attack", default: 5
     t.integer "user_level", default: 1
+    t.string "current_quest"
   end
 
 end

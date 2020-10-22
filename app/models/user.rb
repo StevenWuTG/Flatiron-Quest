@@ -7,6 +7,15 @@ class User < ActiveRecord::Base
     has_many :monsters, through: :battles
     @@prompt = TTY::Prompt.new
 
+    
+    # def self.completed_quest
+    #     self.completed.filter
+    # end
+
+    def completed
+        self.battles.monter.quest_name
+    end
+
     def self.signup
         username = @@prompt.ask("Please create a username.")
         password = @@prompt.mask("Please create a password.")
@@ -34,11 +43,15 @@ class User < ActiveRecord::Base
         end
     end
 
+    
+
     def stats_check
         puts "User Name: #{self.user_name}"
         puts "Health: #{self.user_health}"
         puts "Attack: #{self.user_attack}"
         puts "Student Level: #{self.user_level}"
+        puts "Current Quest: #{self.current_quest}"
+        # puts "Completed quest: #{@session_user.completed}"
     end
     
 end
