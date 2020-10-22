@@ -159,11 +159,39 @@ class CLI
             sleep 3
             CLI.battle_menu
         elsif choice == "Curl up in a ball, give up on the lab, cry and drop out of Flatiron"
-            system ('clear')
-            puts "\nSorry you feel that way, coding isn't for everyone, better luck next time..."
-            sleep 3
-            system('clear')
-            CLI.log_out
+            system("clear")
+            puts @@artii.asciify("WARNING ! ! !").colorize(:color => :red).blink
+            sleep 2
+            puts "\n\n If you quit you will lose your student account and have to enroll and start all over!!\n\n"
+            sleep 2
+            prompt = TTY::Prompt.new
+            choice = prompt.select('Are You Sure You Wanna Quit??') do |menu|
+                menu.choice "Yea, this is too hard. I'm outta here.....",1
+                menu.choice "HELL NO, I chose 'curl up' by accident. The only thing I've quit is cigarettes.",2
+            end
+            if choice == 1
+                system ('clear')
+                puts "\nSorry you feel that way, coding isn't for everyone, better luck next time..."
+                sleep 3
+                system('clear')
+                @session_user.destroy
+                CLI.log_out
+            else
+                
+
+                CLI.battle_menu
+            end
+
+            
+
+
+
+            # system ('clear')
+            # puts "\nSorry you feel that way, coding isn't for everyone, better luck next time..."
+            # sleep 3
+            # system('clear')
+            # @session_user.destroy
+            # CLI.log_out
         end
     end
     

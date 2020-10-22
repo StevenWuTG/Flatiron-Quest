@@ -6,7 +6,7 @@ Support.destroy_all
 
 #user data
 # mary = User.create(user_name: "MARY", user_password: "mary", user_health: 1000, user_attack: 1000)
-)
+
 steven = User.create(user_name: "STEVEN", user_password: "steve", user_health: 1000, user_attack: 1000)
 
 #quest data
