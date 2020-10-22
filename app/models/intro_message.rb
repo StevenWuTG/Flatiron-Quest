@@ -15,7 +15,7 @@ class IntroMessage
   sleep 1
   puts @@artii.asciify("To . . .").colorize(:color => :green).bold
   sleep 2
-  puts @@artii.asciify("Flatiron Quest !!!").colorize(:color => :green).blink.bold
+  puts @@artii.asciify("Flatiron Quest ! ! !").colorize(:color => :green).blink.bold
   sleep 1.5
   puts " "
   puts " "
