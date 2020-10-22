@@ -60,6 +60,7 @@ GEM
     tty-screen (0.8.1)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    wav-file (0.0.3)
     wisper (2.0.1)
     zeitwerk (2.4.0)
 
@@ -75,6 +76,7 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   tty-prompt
+  wav-file
 
 BUNDLED WITH
    1.16.1

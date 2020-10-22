@@ -177,7 +177,7 @@ class CLI
                 @session_user.destroy
                 CLI.log_out
             else
-                
+
 
                 CLI.battle_menu
             end
