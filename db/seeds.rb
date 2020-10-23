@@ -15,19 +15,19 @@ codechallenge = Quest.create(quest_name: "Code Challenge")#id 1
 mod1complete = Quest.create(quest_name: "Mod 1 Project")#id 2
 
 #monster data
-envsetup = Monster.create(mon_name: "Environment Set-up",mon_health: 3,mon_attack: 1,quest_id: codechallenge.id)
+envsetup = Monster.create(mon_name: "Environment Set-up",mon_health: 5,mon_attack: 1,quest_id: codechallenge.id)
 
-object_o = Monster.create(mon_name: "Object Orientation",mon_health: 4,mon_attack: 2,quest_id: codechallenge.id)
+object_o = Monster.create(mon_name: "Object Orientation",mon_health: 8,mon_attack: 2,quest_id: codechallenge.id)
 
-cc_practice = Monster.create(mon_name: "Mock Code Challenge",mon_health: 6,mon_attack: 2,quest_id: codechallenge.id)
+cc_practice = Monster.create(mon_name: "Mock Code Challenge",mon_health: 12,mon_attack: 2,quest_id: codechallenge.id)
 
-cc_mod1 = Monster.create(mon_name: "Mod1 Code Challenge",mon_health: 10,mon_attack: 3,quest_id: codechallenge.id) #id 4
+cc_mod1 = Monster.create(mon_name: "Mod1 Code Challenge",mon_health: 20,mon_attack: 4,quest_id: codechallenge.id) #id 4
 
-active_r = Monster.create(mon_name: "ActiveRecord::Base",mon_health: 6,mon_attack: 2,quest_id: mod1complete.id)
+active_r = Monster.create(mon_name: "ActiveRecord::Base",mon_health: 18,mon_attack: 3,quest_id: mod1complete.id)
 
-proj_week = Monster.create(mon_name: "Project Week",mon_health: 8,mon_attack: 2,quest_id: mod1complete.id)
+proj_week = Monster.create(mon_name: "Project Week",mon_health: 21,mon_attack: 3,quest_id: mod1complete.id)
 
-proj_final = Monster.create(mon_name: "Project Presentation",mon_health: 13,mon_attack: 6,quest_id: mod1complete.id) #id  7
+proj_final = Monster.create(mon_name: "Project Presentation",mon_health: 30,mon_attack: 6,quest_id: mod1complete.id) #id  7
 
 
 

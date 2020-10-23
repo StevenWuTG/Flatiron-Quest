@@ -108,7 +108,7 @@ class CLI
         choice = prompt.select('Choose an option') do |menu|
             menu.choice "Battle Today's Lab",1
             menu.choice "View Stats",2
-            menu.choice "Log Out",3
+            menu.choice "Curl up in a ball, give up on the lab, cry and drop out of Flatiron",3
         end
         if choice == 1 #"Battle Today's Lab"
             CLI.battle_menu
@@ -119,7 +119,28 @@ class CLI
             system('clear')
             CLI.user_menu
         elsif choice == 3 #"Log Out"
-            CLI.log_out
+            system("clear")
+            puts @@artii.asciify("WARNING ! ! !").colorize(:color => :red).blink
+            sleep 2
+            puts "\n\n If you quit you will lose your student account and have to enroll and start all over!!\n\n"
+            sleep 2
+            prompt = TTY::Prompt.new
+            choice = prompt.select('Are You Sure You Wanna Quit??') do |menu|
+                menu.choice "Yea, this is too hard. I'm outta here.....",1
+                menu.choice "HELL NO, I chose 'curl up' by accident. The only thing I've quit is cigarettes.",2
+            end
+            if choice == 1
+                system ('clear')
+                puts "\nSorry you feel that way, coding isn't for everyone, better luck next time..."
+                sleep 3
+                system('clear')
+                @session_user.destroy
+                CLI.log_out
+            else
+
+
+                CLI.battle_menu
+            end
         end
     end
 
@@ -236,7 +257,6 @@ class CLI
                 monster.mon_health -= user.user_attack
                 puts "\nMonster health takes a hit of #{user.user_attack} points!"
                 
-                
                 puts " "
                 sleep 2
 
@@ -276,7 +296,7 @@ class CLI
             puts @@artii.asciify("Snack Time").colorize(:color => :green).bold
             # puts " "
             # puts " "
-            puts "\n\nCan't concentrate, grabbin a snack."
+            puts "\n\nCan't concentrate, grabbin a snack and checking out the lab."
             puts "*munch* *munch* ".blink
             puts " "
             sleep 2
