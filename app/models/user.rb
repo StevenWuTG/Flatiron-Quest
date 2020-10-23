@@ -7,14 +7,6 @@ class User < ActiveRecord::Base
     has_many :monsters, through: :battles
     @@prompt = TTY::Prompt.new
 
-    
-    # def self.completed_quest
-    #     self.completed.filter
-    # end
-
-    def completed
-        self.battles.monter.quest_name
-    end
 
     def self.signup
         username = @@prompt.ask("Please create a username.")
