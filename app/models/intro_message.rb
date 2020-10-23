@@ -7,6 +7,9 @@ require "colorize"
 
 class IntroMessage
 
+
+
+
     @@prompt = TTY::Prompt.new
     @@artii = Artii::Base.new :font => 'slant'
 
@@ -14,12 +17,15 @@ class IntroMessage
     def self.welcome
         #binding.pry
 
+        
+
+
         system('clear')
         puts @@artii.asciify("Welcome").colorize(:color => :green).bold
         sleep 1
         puts @@artii.asciify("To . . .").colorize(:color => :green).bold
         sleep 2
-        puts @@artii.asciify("Flatiron Quest ! ! !").colorize(:color => :green).blink.bold
+        puts @@artii.asciify("Flatiron Quest ! ! !").colorize(:color => :green).blink
         sleep 1.5
         puts " "
         puts " "

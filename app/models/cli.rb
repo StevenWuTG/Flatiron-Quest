@@ -26,7 +26,7 @@ class CLI
             CLI.sign_up
         elsif choice == "Exit game"
             system("clear")
-                puts @@artii.asciify("Boooo ! ! !").colorize(:color => :green).bold
+                puts @@artii.asciify("Boooo ! ! !").colorize(:color => :green)
                 puts "\n\nHope you get back to studying soon!"
                 sleep 2
                 system("clear")
@@ -35,14 +35,13 @@ class CLI
     end#done
 
     def self.sign_up#done
-        
         prompt = TTY::Prompt.new
-        puts @@artii.asciify("Sign Up Page").colorize(:color => :green).bold
+        puts @@artii.asciify("Sign Up Page").colorize(:color => :green)
         username = prompt.ask("Create a Username:")
         password = prompt.mask("Create a Password:")
         user = User.create(user_name: username, user_password: password)
         system("clear")
-        puts @@artii.asciify("Congrats!!").colorize(:color => :green).bold
+        puts @@artii.asciify("Congrats!!").colorize(:color => :green)
         puts " "
         sleep 1
         puts "You passed the Entrance Exam!"
@@ -56,7 +55,7 @@ class CLI
     end
 
     def self.log_in
-        puts @@artii.asciify("Login Portal").colorize(:color => :green).bold
+        puts @@artii.asciify("Login Portal").colorize(:color => :green)
         puts " "
         prompt = TTY::Prompt.new
         username = prompt.ask("Please Enter Your Username:")
